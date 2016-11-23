@@ -18,7 +18,7 @@
 - name: Create aliases
   register: changed_aliases
   lineinfile: "dest='/etc/aliases' regexp='^{{ item.user }}:' line='{{ item.user }}: {{ item.address }}' state={{ item.state }}"
-  with_items: _postfix.aliases
+  with_items: "{{ _postfix.aliases }}"
 
 - name: Convert aliases
   command: /usr/bin/newaliases
