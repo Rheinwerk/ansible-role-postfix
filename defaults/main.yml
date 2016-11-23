@@ -1,0 +1,13 @@
+---
+_postfix:
+  mailname: host.domain
+  myhostname: host.domain
+  mynetworks:
+    - 127.0.0.0/8
+  inet_interfaces:
+    - 127.0.0.1
+  inet_protocols:
+    - ipv4
+  aliases:
+    - { user: root, address: infrastructure-alert@centerdevice.com, state: present }
+
