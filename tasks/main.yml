@@ -22,7 +22,7 @@
 
 - name: Convert aliases
   command: /usr/bin/newaliases
-  when: changed_aliases|changed
+  when: changed_aliases is changed
   notify:
     - Reload postfix
 
