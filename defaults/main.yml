@@ -10,4 +10,3 @@ _postfix:
     - ipv4
   aliases:
     - { user: root, address: infrastructure-alert@centerdevice.com, state: present }
-

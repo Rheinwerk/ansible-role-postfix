@@ -1,6 +1,5 @@
 # postfix Server Tasks
 ---
-
 - name: Install postfix package
   apt: pkg=postfix state=present
 
@@ -25,4 +24,3 @@
   when: changed_aliases is changed
   notify:
     - Reload postfix
-

@@ -4,4 +4,3 @@
 
 - name: Restart postfix
   service: name=postfix state=restarted
-
