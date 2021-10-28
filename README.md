@@ -3,7 +3,7 @@ postfix
 
 This roles installs and configures postfix
 
-[![Build Status](https://travis-ci.org/Rheinwerk/ansible-role-postfix.svg?branch=master)](https://travis-ci.org/Rheinwerk/ansible-role-postfix)
+[![Build Status](https://github.com/Rheinwerk/ansible-role-postfix/actions/workflows/ci.yml/badge.svg)](https://github.com/Rheinwerk/ansible-role-postfix/actions/workflows/ci.yml)
 
 Requirements
 ------------
