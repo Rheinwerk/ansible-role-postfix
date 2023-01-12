@@ -1,26 +1,40 @@
 # postfix Server Tasks
 ---
 - name: Install postfix package
-  apt: pkg=postfix state=present
+  apt:
+    pkg: postfix
+    state: present
 
 - name: Ensure postfix service is running
-  service: name=postfix state=started enabled=yes
+  service:
+    name: postfix
+    state: started
+    enabled: yes
 
 - name: Create postfix configuration file
-  template: src=etc/postfix/main.cf.j2 dest=/etc/postfix/main.cf mode=0644 owner=root group=root
+  template:
+    src: etc/postfix/main.cf.j2
+    dest: /etc/postfix/main.cf
+    mode: 0644
+    owner: root
+    group: root
   notify:
     - Restart postfix
 
 - name: Set /etc/mailname
-  copy: content="{{ _postfix.mailname }}" dest=/etc/mailname owner=root group=root mode=0644
+  copy:
+    content: "{{ _postfix.mailname }}"
+    dest: /etc/mailname
+    owner: root
+    group: root
+    mode: 0644
 
-- name: Create aliases
+- name: Create aliases # noqa args[module]
   register: changed_aliases
-  lineinfile: "dest='/etc/aliases' regexp='^{{ item.user }}:' line='{{ item.user }}: {{ item.address }}' state={{ item.state }}"
+  lineinfile:
+    dest: '/etc/aliases'
+    regexp: '^{{ item.user }}:'
+    line: '{{ item.user }}: {{ item.address }}'
+    state: '{{ item.state }}'
   with_items: "{{ _postfix.aliases }}"
-
-- name: Convert aliases
-  command: /usr/bin/newaliases
-  when: changed_aliases is changed
-  notify:
-    - Reload postfix
+  notify: Convert aliases
