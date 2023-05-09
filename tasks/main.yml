@@ -1,18 +1,18 @@
 # postfix Server Tasks
 ---
 - name: Install postfix package
-  apt:
+  ansible.builtin.apt:
     pkg: postfix
     state: present
 
 - name: Ensure postfix service is running
-  service:
+  ansible.builtin.service:
     name: postfix
     state: started
     enabled: yes
 
 - name: Create postfix configuration file
-  template:
+  ansible.builtin.template:
     src: etc/postfix/main.cf.j2
     dest: /etc/postfix/main.cf
     mode: 0644
@@ -22,7 +22,7 @@
     - Restart postfix
 
 - name: Set /etc/mailname
-  copy:
+  ansible.builtin.copy:
     content: "{{ _postfix.mailname }}"
     dest: /etc/mailname
     owner: root
@@ -31,7 +31,7 @@
 
 - name: Create aliases # noqa args[module]
   register: changed_aliases
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: '/etc/aliases'
     regexp: '^{{ item.user }}:'
     line: '{{ item.user }}: {{ item.address }}'
