@@ -1,15 +1,15 @@
 ---
 - name: Convert aliases
-  command: /usr/bin/newaliases
+  ansible.builtin.command: /usr/bin/newaliases
   notify:
     - Reload postfix
 
 - name: Reload postfix
-  service:
+  ansible.builtin.service:
     name: postfix
     state: reloaded
 
 - name: Restart postfix
-  service:
+  ansible.builtin.service:
     name: postfix
     state: restarted
