@@ -1,5 +1,5 @@
 ---
-- name: Convert aliases
+- name: Convert aliases # noqa: no-changed-when
   ansible.builtin.command: /usr/bin/newaliases
   notify:
     - Reload postfix
